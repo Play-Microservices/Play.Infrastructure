@@ -22,7 +22,7 @@ dotnet nuget list source
 ### Set subscription
 `az account set --subscription "Play.Microservices"`
 
-### Creating the Azure resource group
+### Create Resource Group
 
 ```bash
 appname="playeconomy"
@@ -35,4 +35,17 @@ az group create --name $appname --location $location
 ```bash
 az provider register --namespace Microsoft.DocumentDB
 az cosmosdb create --name $appname --resource-group $appname --kind MongoDB --enable-free-tier
+```
+
+### Create Service Bus
+
+```bash
+az servicebus namespace create --name $appname --resource-group $appname --sku Standard
+```
+
+### Create Container Registry
+
+```bash
+az provider register --namespace Microsoft.ContainerRegistry
+az acr create --name $appname --resource-group $appname --sku Basic
 ```
