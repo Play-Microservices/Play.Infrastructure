@@ -1,0 +1,5 @@
+# Ignore Rider files
+.idea/
+
+# DS_USER files
+**/.DS_STORE
