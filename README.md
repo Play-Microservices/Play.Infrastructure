@@ -49,3 +49,19 @@ az servicebus namespace create --name $appname --resource-group $appname --sku S
 az provider register --namespace Microsoft.ContainerRegistry
 az acr create --name $appname --resource-group $appname --sku Basic
 ```
+
+### Create AKS cluster
+
+```bash
+az provider register --namespace Microsoft.ContainerService
+az aks create -n $appname -g $appname \
+  --node-vm-size Standard_D4lds_v6 \
+  --node-count 2 \
+  --attach-acr $appname \
+  --enable-oidc-issuer \
+  --enable-workload-identity \
+  --generate-ssh-keys
+az aks get-credentials \
+  --name $appname \
+  --resource-group $appname
+```
